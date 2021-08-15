@@ -1,0 +1,22 @@
+& {
+  padding: 4px 10px;
+  white-space: nowrap;
+  line-height: 24px;
+  cursor: pointer;
+  display: flex;
+  user-select: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (min-width: $breakpoint_mdpx) {
+  &:hover {
+    background-color: $palette_divider;
+  }
+}
+
+@media (max-width: $breakpoint_mdpx) {
+  & {
+    padding: 8px 10px;
+  }
+}

@@ -1,0 +1,199 @@
+& {
+  min-width: 100px;
+  cursor: pointer;
+  border-width: 1px;
+  border-style: solid;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 16px;
+  box-sizing: border-box;
+  position: relative;
+  user-select: none;
+}
+
+&.fullwidth {
+  width: 100%;
+}
+
+&.loading {
+  cursor: default;
+}
+
+&.loading .content {
+  visibility: hidden;
+}
+
+&.disabled {
+  cursor: default;
+}
+
+&.primary-contained {
+  border-radius: $button_border_radius;
+  background-color: $palette_primary_main;
+  color: white;
+  border-color: $palette_primary_main;
+}
+
+&.primary-outlined {
+  border-radius: $button_border_radius;
+  background-color: transparent;
+  color: $palette_primary_main;
+  border-color: $palette_primary_main;
+}
+
+&.primary-inline {
+  border-radius: $button_border_radius;
+  border: none;
+  min-width: unset;
+  background-color: transparent;
+  padding: "5px 10px";
+  color: $palette_primary_main;
+}
+
+&.secondary-contained {
+  border-radius: $button_border_radius;
+  background-color: $palette_secondary_main;
+  color: white;
+  border-color: $palette_secondary_main;
+}
+
+&.secondary-outlined {
+  border-radius: $button_border_radius;
+  background-color: transparent;
+  color: $palette_secondary_main;
+  border-color: $palette_secondary_main;
+}
+
+&.secondary-inline {
+  border-radius: $button_border_radius;
+  border: none;
+  min-width: unset;
+  background-color: transparent;
+  padding: "5px 10px";
+  color: $palette_secondary_main;
+}
+
+&.error-contained {
+  border-radius: $button_border_radius;
+  background-color: $palette_error_main;
+  color: white;
+  border-color: $palette_error_main;
+}
+
+&.error-outlined {
+  border-radius: $button_border_radius;
+  background-color: transparent;
+  color: $palette_error_main;
+  border-color: $palette_error_main;
+}
+
+&.error-inline {
+  border-radius: $button_border_radius;
+  border: none;
+  min-width: unset;
+  background-color: transparent;
+  padding: "5px 10px";
+  color: $palette_error_main;
+}
+
+&.size-small {
+  padding: $button_small_size_padding;
+  height: $button_small_height;
+}
+
+&.size-medium {
+  padding: $button_large_size_padding;
+  height: $button_large_height;
+}
+
+&.size-large {
+  padding: $button_large_size_padding;
+  height: $button_large_height;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  animation: rotate 2s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -12px 0 0 -12px;
+  width: 24px;
+  height: 24px;
+}
+
+.spinner .path {
+  stroke: currentColor;
+  stroke-linecap: round;
+  animation: dash 1.5s ease-in-out infinite;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  &.primary-contained:hover:not(.disabled):not(.loading) {
+    background-color: $palette_primary_dark;
+    border-color: $palette_primary_dark;
+  }
+
+  &.primary-outlined:hover:not(.disabled):not(.loading) {
+    background-color: $palette_primary_main_fade;
+  }
+
+  &.primary-inline:hover:not(.disabled):not(.loading) {
+    background-color: $palette_primary_main_fade;
+  }
+
+  &.secondary-contained:hover:not(.disabled):not(.loading) {
+    background-color: $palette_secondary_dark;
+    border-color: $palette_secondary_dark;
+  }
+
+  &.secondary-outlined:hover:not(.disabled):not(.loading) {
+    background-color: $palette_secondary_main_fade;
+  }
+
+  &.secondary-inline:hover:not(.disabled):not(.loading) {
+    background-color: $palette_secondary_main_fade;
+  }
+
+  &.error-contained:hover:not(.disabled):not(.loading) {
+    background-color: $palette_error_dark;
+    border-color: $palette_error_dark;
+  }
+
+  &.error-outlined:hover:not(.disabled):not(.loading) {
+    background-color: $palette_error_main_fade;
+  }
+
+  &.error-inline:hover:not(.disabled):not(.loading) {
+    background-color: $palette_error_main_fade;
+  }
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}

@@ -122,6 +122,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "dao-ui"
+version = "0.1.0"
+dependencies = [
+ "css-in-rust",
+ "env_logger",
+ "log",
+ "radix_fmt",
+ "regex",
+ "wasm-logger",
+ "web-sys",
+ "yew 0.18.0",
+]
+
+[[package]]
 name = "env_logger"
 version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -838,18 +852,4 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn",
-]
-
-[[package]]
-name = "yewa-pp"
-version = "0.1.0"
-dependencies = [
- "css-in-rust",
- "env_logger",
- "log",
- "radix_fmt",
- "regex",
- "wasm-logger",
- "web-sys",
- "yew 0.18.0",
 ]

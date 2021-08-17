@@ -1,0 +1,24 @@
+& {
+  display: table-cell;
+  border-bottom: 1px solid $palette_divider;
+}
+
+&.align-right {
+  text-align: right;
+}
+
+&.align-left {
+  text-align: left;
+}
+
+&.align-center {
+  text-align: center;
+}
+
+&.size-medium {
+  padding: 16px;
+}
+
+&.size-small {
+  padding: 6px 24px 6px 16px;
+}

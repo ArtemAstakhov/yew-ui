@@ -35,7 +35,7 @@ impl Component for MenuItem {
   fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
     let theme = Theme::default();
     let style = Style::create(
-      String::from("button"),
+      String::from("menu_item"),
       include_str!("menu_item.scss")
         .replace("$breakpoint_md", &theme.breakpoints.md.to_string())
         .replace("$palette_divider", &theme.palette.divider),

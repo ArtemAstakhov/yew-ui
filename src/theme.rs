@@ -6,6 +6,11 @@ pub struct Theme {
   pub components: ThemeComponents,
   pub palette: Palette,
   pub breakpoints: Breakpoints,
+  pub typography: Typography,
+}
+
+pub struct Typography {
+  pub font_family: String,
 }
 
 pub struct Palette {
@@ -200,6 +205,7 @@ impl Theme {
       components: Theme::get_default_components(),
       palette: Theme::get_default_palette(),
       breakpoints: Theme::get_default_breakpoints(),
+      typography: Theme::get_default_typography(),
     }
   }
 
@@ -234,6 +240,14 @@ impl Theme {
       sm: 480,
       md: 768,
       lg: 1000,
+    }
+  }
+
+  pub fn get_default_typography() -> Typography {
+    Typography {
+      font_family: String::from("-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif")
     }
   }
 }

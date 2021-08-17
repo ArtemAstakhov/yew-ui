@@ -3,24 +3,24 @@ use yew::{
   html, Component, ShouldRender, Html, ComponentLink,
   Properties, Children, Classes,
 };
+use crate::components::table::TableSize;
 use crate::theme::{Theme};
 
 #[derive(Clone, PartialEq, Debug)]
-#[allow(dead_code)]
-pub enum ButtonIconSize {
-  Small,
-  Medium,
-  Large,
+pub enum TableCellVariant {
+  Head,
+  Body,
 }
 
 #[derive(Clone, PartialEq, Debug)]
 #[allow(dead_code)]
-pub enum ButtonIconPosition {
-  Start,
-  End,
+pub enum TableCellAlign {
+  Right,
+  Left,
+  Center,
 }
 
-pub struct ButtonIcon {
+pub struct TableCell {
   style: Style,
   props: Props,
 }
@@ -31,41 +31,43 @@ pub struct Props {
     pub class: String,
     #[prop_or_default]
     pub children: Children,
-    #[prop_or(ButtonIconSize::Medium)]
-    pub size: ButtonIconSize,
-    #[prop_or(ButtonIconPosition::Start)]
-    pub position: ButtonIconPosition,
+    #[prop_or(TableCellAlign::Left)]
+    pub align: TableCellAlign,
+    #[prop_or_default]
+    pub variant: Option<TableCellVariant>,
+    #[prop_or(TableSize::Medium)]
+    pub size: TableSize,
+
 }
 
-fn get_size_class(size: &ButtonIconSize) -> String {
+fn get_align_class(size: &TableCellAlign) -> String {
   let s = match size {
-    ButtonIconSize::Small => { "small" }
-    ButtonIconSize::Medium => { "medium" }
-    ButtonIconSize::Large => { "large" }
+    TableCellAlign::Left => { "left" }
+    TableCellAlign::Right => { "right" }
+    TableCellAlign::Center => { "center" }
+  };
+
+  format!("align-{}", s)
+}
+
+fn get_size_class(size: &TableSize) -> String {
+  let s = match size {
+    TableSize::Small => { "small" }
+    TableSize::Medium => { "medium" }
   };
 
   format!("size-{}", s)
 }
 
-fn get_position_class(size: &ButtonIconPosition) -> String {
-  let s = match size {
-    ButtonIconPosition::Start => { "start" }
-    ButtonIconPosition::End => { "end" }
-  };
-
-  format!("position-{}", s)
-}
-
-impl Component for ButtonIcon {
+impl Component for TableCell {
   type Message = ();
   type Properties = Props;
 
   fn create(props: Self::Properties, _link: ComponentLink<Self>) -> Self {
     let theme = Theme::default();
     let style = Style::create(
-      String::from("button_icon"),
-      include_str!("button_icon.scss")
-        .replace("$breakpoint_md", &theme.breakpoints.md.to_string())
+      String::from("table_cell"),
+      include_str!("table_cell.scss")
         .replace("$palette_divider", &theme.palette.divider),
     )
     .expect("An error occured while creating the style");
@@ -92,24 +94,32 @@ impl Component for ButtonIcon {
 
   fn view(&self) -> Html {
     let class = self.format_classes();
+    let component = if let Some(v) = &self.props.variant {
+      match v {
+          TableCellVariant::Body => { "td" }
+          TableCellVariant::Head => { "th" }
+      }
+    } else {
+      "td"
+    };
 
     html! {
-      <div
+      <@{component}
         class=class
       >
         {self.props.children.clone()}
-      </div>
+      </@>
     }
   }
 }
 
-impl ButtonIcon {
+impl TableCell {
   fn format_classes(&self) -> Classes {
     let mut classes = Classes::from(self.style.clone().to_string());
 
     classes.push(self.props.class.clone());
     classes.push(get_size_class(&self.props.size));
-    classes.push(get_position_class(&self.props.position));
+    classes.push(get_align_class(&self.props.align));
 
     classes
   }
